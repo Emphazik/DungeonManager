@@ -17,7 +17,7 @@ namespace DungeonManager.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
-            this.Characters = new HashSet<Characters>();
+            this.Cart = new HashSet<Cart>();
             this.Orders = new HashSet<Orders>();
         }
     
@@ -27,10 +27,10 @@ namespace DungeonManager.Model
         public string Email { get; set; }
         public Nullable<int> idRole { get; set; }
     
+        public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Characters> Characters { get; set; }
+        public virtual ICollection<Cart> Cart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
-        public virtual Roles Roles { get; set; }
     }
 }

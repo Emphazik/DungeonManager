@@ -12,22 +12,15 @@ namespace DungeonManager.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Orders
+    public partial class OrderItems
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Orders()
-        {
-            this.OrderItems = new HashSet<OrderItems>();
-        }
-    
+        public int idOrderItem { get; set; }
         public int idOrder { get; set; }
-        public int idUser { get; set; }
-        public Nullable<System.DateTime> OrderDate { get; set; }
-        public Nullable<int> idStatus { get; set; }
+        public int idCharacter { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItems> OrderItems { get; set; }
-        public virtual OrderStatus OrderStatus { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual Orders Orders { get; set; }
+        public virtual Characters Characters { get; set; }
     }
 }

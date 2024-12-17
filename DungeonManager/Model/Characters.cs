@@ -18,6 +18,7 @@ namespace DungeonManager.Model
         public Characters()
         {
             this.Cart = new HashSet<Cart>();
+            this.OrderItems = new HashSet<OrderItems>();
         }
     
         public int idCharacter { get; set; }
@@ -26,7 +27,6 @@ namespace DungeonManager.Model
         public Nullable<int> idPerks { get; set; }
         public Nullable<int> idSkills { get; set; }
         public Nullable<int> idStats { get; set; }
-        public Nullable<int> idUser { get; set; }
         public decimal Price { get; set; }
         public string ImageURL { get; set; }
     
@@ -36,6 +36,7 @@ namespace DungeonManager.Model
         public virtual Perks Perks { get; set; }
         public virtual Skills Skills { get; set; }
         public virtual Stats Stats { get; set; }
-        public virtual Users Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderItems> OrderItems { get; set; }
     }
 }

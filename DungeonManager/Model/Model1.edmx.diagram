@@ -5,26 +5,29 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b7a5faf84b4a4424b4ba871d47b1831e" Name="Diagram1">
-        <EntityTypeShape EntityType="DungeonManagerModel.Cart" Width="1.5" PointX="10.5" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DungeonManagerModel.Characters" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DungeonManagerModel.Classes" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DungeonManagerModel.Orders" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DungeonManagerModel.Perks" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DungeonManagerModel.Roles" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DungeonManagerModel.Skills" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DungeonManagerModel.Stats" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DungeonManagerModel.Statuses" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DungeonManagerModel.Users" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <AssociationConnector Association="DungeonManagerModel.FK__Cart__idCharacte__6477ECF3" ManuallyRouted="false" />
-        <AssociationConnector Association="DungeonManagerModel.FK__Cart__idOrder__6383C8BA" ManuallyRouted="false" />
-        <AssociationConnector Association="DungeonManagerModel.FK__Character__idCla__48CFD27E" ManuallyRouted="false" />
-        <AssociationConnector Association="DungeonManagerModel.FK__Character__idPer__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="DungeonManagerModel.FK__Character__idSki__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="DungeonManagerModel.FK__Character__idSta__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="DungeonManagerModel.FK__Character__idUse__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="DungeonManagerModel.FK__Orders__idStatus__60A75C0F" ManuallyRouted="false" />
-        <AssociationConnector Association="DungeonManagerModel.FK__Orders__idUser__5FB337D6" ManuallyRouted="false" />
         <AssociationConnector Association="DungeonManagerModel.FK__Users__idRole__398D8EEE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DungeonManagerModel.Cart" Width="1.5" PointX="7.875" PointY="7.625" />
+        <EntityTypeShape EntityType="DungeonManagerModel.OrderItems" Width="1.5" PointX="10.875" PointY="4.5" />
+        <EntityTypeShape EntityType="DungeonManagerModel.Orders" Width="1.5" PointX="8.625" PointY="4.5" />
+        <EntityTypeShape EntityType="DungeonManagerModel.OrderStatus" Width="1.5" PointX="6.375" PointY="0.875" />
+        <EntityTypeShape EntityType="DungeonManagerModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="DungeonManagerModel.FK_Cart_User" />
+        <AssociationConnector Association="DungeonManagerModel.FK_OrderItems_Order" />
+        <AssociationConnector Association="DungeonManagerModel.FK_Orders_Status" />
+        <AssociationConnector Association="DungeonManagerModel.FK_Orders_User" />
+        <EntityTypeShape EntityType="DungeonManagerModel.Characters" Width="1.5" PointX="5.25" PointY="11.25" />
+        <AssociationConnector Association="DungeonManagerModel.FK_Cart_Character" />
+        <AssociationConnector Association="DungeonManagerModel.FK__Character__idCla__48CFD27E" />
+        <AssociationConnector Association="DungeonManagerModel.FK__Character__idPer__49C3F6B7" />
+        <AssociationConnector Association="DungeonManagerModel.FK__Character__idSki__4AB81AF0" />
+        <AssociationConnector Association="DungeonManagerModel.FK__Character__idSta__4BAC3F29" />
+        <AssociationConnector Association="DungeonManagerModel.FK_OrderItems_Character" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,10 +12,10 @@ namespace DungeonManager.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuses
+    public partial class OrderStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuses()
+        public OrderStatus()
         {
             this.Orders = new HashSet<Orders>();
         }

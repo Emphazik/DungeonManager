@@ -22,7 +22,8 @@
                     <TextBlock.ContextMenu>
                         <ContextMenu x:Name="ClientContextMenu">
                             <MenuItem Header="Мероприятия" Click="MenuItem_Events_Click"/>
-                            <MenuItem Header="Заказы" Click="MenuItem_Orders_Click"/>
+                            <MenuItem Header="Корзина" Click="MenuItem_Orders_Click"/>
+                            <MenuItem Header="История заказов" Click="MenuItem_OrderHistory_Click"/>
                             <Separator/>
                             <MenuItem Header="Выйти" Click="MenuItem_Logout_Click"/>
                             <MenuItem Header="Закрыть приложение" Click="MenuItem_Exit_Click"/>
@@ -141,7 +142,8 @@
                             Width="250" Height="40"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Margin="10"/>
+                            Margin="10"
+                                    Click="AddToCartButton_Click"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

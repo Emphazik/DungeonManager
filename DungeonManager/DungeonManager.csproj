@@ -64,6 +64,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AuthUsersWindows\CartViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AuthUsersWindows\UserOrderHistoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthUsersWindows\UserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,6 +93,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ApplicationData\AppConnect.cs" />
+    <Compile Include="AuthUsersWindows\CartViewWindow.xaml.cs">
+      <DependentUpon>CartViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AuthUsersWindows\UserOrderHistoryWindow.xaml.cs">
+      <DependentUpon>UserOrderHistoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AuthUsersWindows\UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
@@ -124,7 +138,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\OrderItems.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Orders.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OrderStatus.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Perks.cs">
@@ -139,7 +159,7 @@
     <Compile Include="Model\Stats.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Statuses.cs">
+    <Compile Include="Model\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Users.cs">
