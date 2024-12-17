@@ -5,8 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DungeonManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Wiki-магазин Dungeon Manager" Height="600" Width="1000" Icon="\Images/dad.ico" 
+        WindowStartupLocation="CenterScreen" FontFamily="Arial" ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/background.png" TileMode="Tile" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Image Height="78" Margin="200,120,200,0" VerticalAlignment="Top" Stretch="UniformToFill" Source="/Images/dnd_name.png">
+        </Image>
+        <TextBlock HorizontalAlignment="Center" Margin="0,220,0,0" TextWrapping="Wrap" 
+            Text="Беспощадное хардкорное фэнтезийное экшн-приключение от первого 
+                   лица с элементами PvPvE в подземельях. Объединяйтесь с друзьями
+                   и при помощи смелости, смекалки и хитрости отыщите 
+                   мифические сокровища, побеждайте ужасных монстров, при этом оставаясь на шаг впереди других коварных охотников за сокровищами." 
+            Foreground="White" FontSize="18" FontFamily="Times New Roman" TextAlignment="Center"
+            VerticalAlignment="Top" Height="125" Width="600"/>
+
+        <Border BorderBrush="Black" Background="#B2000000" BorderThickness="1" Height="60" VerticalAlignment="Top">
+            <Image Margin="20,4,0,4" Source="/Images/logo.png" HorizontalAlignment="Left" Width="170" />
+        </Border>
+
+        <Button HorizontalAlignment="Right" Margin="0,10,10,0" Height="40" Click="Login_To_Click"
+            Content="Войти" Foreground="White" FontSize="18" FontFamily="Times New Roman"
+            Background="Transparent" 
+            VerticalAlignment="Top" Width="110"/>
+
+        <Button Height="40" Click="Register_To_Click"
+                Content="Регистрация" Foreground="White" FontSize="18" FontFamily="Times New Roman"
+                Background="Transparent" 
+                VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,145,0" Width="111"/>
+        <Image Margin="378,0,321,52" Height="112" Source="/Images/SteamLogoo.png" Stretch="Uniform"  VerticalAlignment="Bottom"/>
+        <Image Margin="651,0,99,58" Height="99" Width="250" Source="/Images/BlacksmithLogo.png" Stretch="Uniform" VerticalAlignment="Bottom"/>
+        <Image Margin="102,0,0,55" Width="250" Source="/Images/EpicLogo.png" Stretch="Uniform" Height="90" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+
+
     </Grid>
 </Window>

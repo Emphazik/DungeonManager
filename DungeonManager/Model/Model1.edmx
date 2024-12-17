@@ -1,0 +1,689 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DungeonManagerModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="idCart" />
+          </Key>
+          <Property Name="idCart" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrder" Type="int" />
+          <Property Name="idCharacter" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Characters">
+          <Key>
+            <PropertyRef Name="idCharacter" />
+          </Key>
+          <Property Name="idCharacter" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CharacterName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="idClass" Type="int" />
+          <Property Name="idPerks" Type="int" />
+          <Property Name="idSkills" Type="int" />
+          <Property Name="idStats" Type="int" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ImageURL" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Classes">
+          <Key>
+            <PropertyRef Name="idClass" />
+          </Key>
+          <Property Name="idClass" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameClass" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="idOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="idStatus" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Perks">
+          <Key>
+            <PropertyRef Name="idPerk" />
+          </Key>
+          <Property Name="idPerk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NamePerk" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="idRole" />
+          </Key>
+          <Property Name="idRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skills">
+          <Key>
+            <PropertyRef Name="idSkill" />
+          </Key>
+          <Property Name="idSkill" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameSkill" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="Stats">
+          <Key>
+            <PropertyRef Name="idStat" />
+          </Key>
+          <Property Name="idStat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Health" Type="int" />
+          <Property Name="Mana" Type="int" />
+          <Property Name="Strength" Type="int" />
+          <Property Name="Agility" Type="int" />
+          <Property Name="Intelligence" Type="int" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="idStatus" />
+          </Key>
+          <Property Name="idStatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="idRole" Type="int" />
+        </EntityType>
+        <Association Name="FK__Cart__idCharacte__6477ECF3">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="idCharacter" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="idCharacter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cart__idOrder__6383C8BA">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="idOrder" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="idOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Character__idCla__48CFD27E">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="0..1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="idClass" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="idClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Character__idPer__49C3F6B7">
+          <End Role="Perks" Type="Self.Perks" Multiplicity="0..1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perks">
+              <PropertyRef Name="idPerk" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="idPerks" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Character__idSki__4AB81AF0">
+          <End Role="Skills" Type="Self.Skills" Multiplicity="0..1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="idSkill" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="idSkills" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Character__idSta__4BAC3F29">
+          <End Role="Stats" Type="Self.Stats" Multiplicity="0..1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stats">
+              <PropertyRef Name="idStat" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="idStats" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Character__idUse__4CA06362">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__idStatus__60A75C0F">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="idStatus" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="idStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__idUser__5FB337D6">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__idRole__398D8EEE">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DungeonManagerModelContainer">
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Characters" EntityType="Self.Characters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perks" EntityType="Self.Perks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stats" EntityType="Self.Stats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cart__idCharacte__6477ECF3" Association="Self.FK__Cart__idCharacte__6477ECF3">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cart__idOrder__6383C8BA" Association="Self.FK__Cart__idOrder__6383C8BA">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Character__idCla__48CFD27E" Association="Self.FK__Character__idCla__48CFD27E">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Character__idPer__49C3F6B7" Association="Self.FK__Character__idPer__49C3F6B7">
+            <End Role="Perks" EntitySet="Perks" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Character__idSki__4AB81AF0" Association="Self.FK__Character__idSki__4AB81AF0">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Character__idSta__4BAC3F29" Association="Self.FK__Character__idSta__4BAC3F29">
+            <End Role="Stats" EntitySet="Stats" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Character__idUse__4CA06362" Association="Self.FK__Character__idUse__4CA06362">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__idStatus__60A75C0F" Association="Self.FK__Orders__idStatus__60A75C0F">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__idUser__5FB337D6" Association="Self.FK__Orders__idUser__5FB337D6">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__idRole__398D8EEE" Association="Self.FK__Users__idRole__398D8EEE">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DungeonManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="idCart" />
+          </Key>
+          <Property Name="idCart" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrder" Type="Int32" />
+          <Property Name="idCharacter" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK__Cart__idCharacte__6477ECF3" FromRole="Cart" ToRole="Characters" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Cart__idOrder__6383C8BA" FromRole="Cart" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Characters">
+          <Key>
+            <PropertyRef Name="idCharacter" />
+          </Key>
+          <Property Name="idCharacter" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CharacterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idClass" Type="Int32" />
+          <Property Name="idPerks" Type="Int32" />
+          <Property Name="idSkills" Type="Int32" />
+          <Property Name="idStats" Type="Int32" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cart" Relationship="Self.FK__Cart__idCharacte__6477ECF3" FromRole="Characters" ToRole="Cart" />
+          <NavigationProperty Name="Classes" Relationship="Self.FK__Character__idCla__48CFD27E" FromRole="Characters" ToRole="Classes" />
+          <NavigationProperty Name="Perks" Relationship="Self.FK__Character__idPer__49C3F6B7" FromRole="Characters" ToRole="Perks" />
+          <NavigationProperty Name="Skills" Relationship="Self.FK__Character__idSki__4AB81AF0" FromRole="Characters" ToRole="Skills" />
+          <NavigationProperty Name="Stats" Relationship="Self.FK__Character__idSta__4BAC3F29" FromRole="Characters" ToRole="Stats" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Character__idUse__4CA06362" FromRole="Characters" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Classes">
+          <Key>
+            <PropertyRef Name="idClass" />
+          </Key>
+          <Property Name="idClass" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK__Character__idCla__48CFD27E" FromRole="Classes" ToRole="Characters" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="idOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="idStatus" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cart" Relationship="Self.FK__Cart__idOrder__6383C8BA" FromRole="Orders" ToRole="Cart" />
+          <NavigationProperty Name="Statuses" Relationship="Self.FK__Orders__idStatus__60A75C0F" FromRole="Orders" ToRole="Statuses" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Orders__idUser__5FB337D6" FromRole="Orders" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Perks">
+          <Key>
+            <PropertyRef Name="idPerk" />
+          </Key>
+          <Property Name="idPerk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NamePerk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK__Character__idPer__49C3F6B7" FromRole="Perks" ToRole="Characters" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="idRole" />
+          </Key>
+          <Property Name="idRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__idRole__398D8EEE" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Skills">
+          <Key>
+            <PropertyRef Name="idSkill" />
+          </Key>
+          <Property Name="idSkill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameSkill" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK__Character__idSki__4AB81AF0" FromRole="Skills" ToRole="Characters" />
+        </EntityType>
+        <EntityType Name="Stats">
+          <Key>
+            <PropertyRef Name="idStat" />
+          </Key>
+          <Property Name="idStat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Health" Type="Int32" />
+          <Property Name="Mana" Type="Int32" />
+          <Property Name="Strength" Type="Int32" />
+          <Property Name="Agility" Type="Int32" />
+          <Property Name="Intelligence" Type="Int32" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK__Character__idSta__4BAC3F29" FromRole="Stats" ToRole="Characters" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="idStatus" />
+          </Key>
+          <Property Name="idStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__idStatus__60A75C0F" FromRole="Statuses" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="idRole" Type="Int32" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK__Character__idUse__4CA06362" FromRole="Users" ToRole="Characters" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__idUser__5FB337D6" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Users__idRole__398D8EEE" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK__Cart__idCharacte__6477ECF3">
+          <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Characters">
+              <PropertyRef Name="idCharacter" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="idCharacter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cart__idOrder__6383C8BA">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="idOrder" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="idOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Character__idCla__48CFD27E">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="0..1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="idClass" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="idClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Character__idPer__49C3F6B7">
+          <End Role="Perks" Type="Self.Perks" Multiplicity="0..1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perks">
+              <PropertyRef Name="idPerk" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="idPerks" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Character__idSki__4AB81AF0">
+          <End Role="Skills" Type="Self.Skills" Multiplicity="0..1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="idSkill" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="idSkills" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Character__idSta__4BAC3F29">
+          <End Role="Stats" Type="Self.Stats" Multiplicity="0..1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stats">
+              <PropertyRef Name="idStat" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="idStats" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Character__idUse__4CA06362">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__idStatus__60A75C0F">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="idStatus" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="idStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__idUser__5FB337D6">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__idRole__398D8EEE">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DungeonManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cart" EntityType="Self.Cart" />
+          <EntitySet Name="Characters" EntityType="Self.Characters" />
+          <EntitySet Name="Classes" EntityType="Self.Classes" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Perks" EntityType="Self.Perks" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Skills" EntityType="Self.Skills" />
+          <EntitySet Name="Stats" EntityType="Self.Stats" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Cart__idCharacte__6477ECF3" Association="Self.FK__Cart__idCharacte__6477ECF3">
+            <End Role="Characters" EntitySet="Characters" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cart__idOrder__6383C8BA" Association="Self.FK__Cart__idOrder__6383C8BA">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Character__idCla__48CFD27E" Association="Self.FK__Character__idCla__48CFD27E">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Character__idPer__49C3F6B7" Association="Self.FK__Character__idPer__49C3F6B7">
+            <End Role="Perks" EntitySet="Perks" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Character__idSki__4AB81AF0" Association="Self.FK__Character__idSki__4AB81AF0">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Character__idSta__4BAC3F29" Association="Self.FK__Character__idSta__4BAC3F29">
+            <End Role="Stats" EntitySet="Stats" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Character__idUse__4CA06362" Association="Self.FK__Character__idUse__4CA06362">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__idStatus__60A75C0F" Association="Self.FK__Orders__idStatus__60A75C0F">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__idUser__5FB337D6" Association="Self.FK__Orders__idUser__5FB337D6">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__idRole__398D8EEE" Association="Self.FK__Users__idRole__398D8EEE">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DungeonManagerModelContainer" CdmEntityContainer="DungeonManagerEntities">
+          <EntitySetMapping Name="Cart">
+            <EntityTypeMapping TypeName="DungeonManagerModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="idCart" ColumnName="idCart" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="idCharacter" ColumnName="idCharacter" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Characters">
+            <EntityTypeMapping TypeName="DungeonManagerModel.Characters">
+              <MappingFragment StoreEntitySet="Characters">
+                <ScalarProperty Name="idCharacter" ColumnName="idCharacter" />
+                <ScalarProperty Name="CharacterName" ColumnName="CharacterName" />
+                <ScalarProperty Name="idClass" ColumnName="idClass" />
+                <ScalarProperty Name="idPerks" ColumnName="idPerks" />
+                <ScalarProperty Name="idSkills" ColumnName="idSkills" />
+                <ScalarProperty Name="idStats" ColumnName="idStats" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="DungeonManagerModel.Classes">
+              <MappingFragment StoreEntitySet="Classes">
+                <ScalarProperty Name="idClass" ColumnName="idClass" />
+                <ScalarProperty Name="NameClass" ColumnName="NameClass" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DungeonManagerModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perks">
+            <EntityTypeMapping TypeName="DungeonManagerModel.Perks">
+              <MappingFragment StoreEntitySet="Perks">
+                <ScalarProperty Name="idPerk" ColumnName="idPerk" />
+                <ScalarProperty Name="NamePerk" ColumnName="NamePerk" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="DungeonManagerModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="DungeonManagerModel.Skills">
+              <MappingFragment StoreEntitySet="Skills">
+                <ScalarProperty Name="idSkill" ColumnName="idSkill" />
+                <ScalarProperty Name="NameSkill" ColumnName="NameSkill" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stats">
+            <EntityTypeMapping TypeName="DungeonManagerModel.Stats">
+              <MappingFragment StoreEntitySet="Stats">
+                <ScalarProperty Name="idStat" ColumnName="idStat" />
+                <ScalarProperty Name="Health" ColumnName="Health" />
+                <ScalarProperty Name="Mana" ColumnName="Mana" />
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="Agility" ColumnName="Agility" />
+                <ScalarProperty Name="Intelligence" ColumnName="Intelligence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statuses">
+            <EntityTypeMapping TypeName="DungeonManagerModel.Statuses">
+              <MappingFragment StoreEntitySet="Statuses">
+                <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DungeonManagerModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

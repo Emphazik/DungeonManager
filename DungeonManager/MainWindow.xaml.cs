@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DungeonManager.AuthUsersWindows;
+using DungeonManager.AuthWindows;
 
 namespace DungeonManager
 {
@@ -23,6 +25,22 @@ namespace DungeonManager
         public MainWindow()
         {
             InitializeComponent();
+            //new UserWindow().Show();
+            //this.Close();
+        }
+
+        private void Login_To_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"Переход в окно авторизации.", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+            new LoginWindow().Show();
+            this.Close();
+        }
+
+        private void Register_To_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"Переход в окно регистрации.", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+            new RegistrationWindow().Show();
+            this.Close();
         }
     }
 }
