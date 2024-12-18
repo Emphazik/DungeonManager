@@ -26,7 +26,14 @@ namespace DungeonManager.Model
         public Nullable<int> Strength { get; set; }
         public Nullable<int> Agility { get; set; }
         public Nullable<int> Intelligence { get; set; }
-    
+
+        public string DisplayStats
+        {
+            get
+            {
+                return $"HP: {Health}, Mana: {Mana}, Str: {Strength}, Int: {Intelligence}";
+            }
+        }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Characters> Characters { get; set; }
     }

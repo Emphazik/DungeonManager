@@ -131,5 +131,6 @@ namespace DungeonManager.AuthUsersWindows
         public string OrderDate { get; set; }
         public string StatusName { get; set; }
         public decimal TotalAmount { get; set; }
+        public int OrderStatusId { get; set; }  // ID статуса
     }
 }

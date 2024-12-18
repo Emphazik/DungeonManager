@@ -112,8 +112,43 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ManagerWindows\AddCharacterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerWindows\EditCharacterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerWindows\ManagerCartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerWindows\ManagerOrderHistoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerWindows\ManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ManagerWindows\AddCharacterWindow.xaml.cs">
+      <DependentUpon>AddCharacterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerWindows\EditCharacterWindow.xaml.cs">
+      <DependentUpon>EditCharacterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerWindows\ManagerCartWindow.xaml.cs">
+      <DependentUpon>ManagerCartWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerWindows\ManagerOrderHistoryWindow.xaml.cs">
+      <DependentUpon>ManagerOrderHistoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerWindows\ManagerWindow.xaml.cs">
+      <DependentUpon>ManagerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Cart.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -200,7 +235,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminWindows\" />
-    <Folder Include="ManagerWindows\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\BlacksmithLogo.png" />
