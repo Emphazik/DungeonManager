@@ -17,6 +17,7 @@ using DungeonManager.ApplicationData;
 using DungeonManager.AuthUsersWindows;
 using DungeonManager.Model;
 using DungeonManager.ManagerWindows;
+using DungeonManager.AdminWindows;
 
 namespace DungeonManager.AuthWindows
 {
@@ -31,8 +32,12 @@ namespace DungeonManager.AuthWindows
             AppConnect.DarkAndDarkBD = new DungeonManagerEntities();
             //LoginTextBox.Text = "Vladusha";
             //PasswordBox.Password = "Vladusha123";
-            LoginTextBox.Text = "Test";
-            PasswordBox.Password = "Test123";
+
+            //LoginTextBox.Text = "Test";
+            //PasswordBox.Password = "Test123";
+
+            LoginTextBox.Text = "Admin";
+            PasswordBox.Password = "admin";
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -92,6 +97,9 @@ namespace DungeonManager.AuthWindows
 
                     case 3:
                         MessageBox.Show($"Добро пожаловать, {user.Login}! Ваша роль: Администратор.", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                        App.Current.Properties["idAdmin"] = user.idUser;
+                        App.Current.Properties["LoginAdmin"] = user.Login;
+                        new AdminWindow().Show();
                         this.Close();
                         break;
 

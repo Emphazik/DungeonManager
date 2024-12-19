@@ -1,13 +1,14 @@
-﻿<Window x:Class="DungeonManager.ManagerWindows.AddCharacterWindow"
+﻿<Window x:Class="DungeonManager.AdminWindows.AdminAddUserWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DungeonManager.ManagerWindows"
+        xmlns:local="clr-namespace:DungeonManager.AdminWindows"
         mc:Ignorable="d"
-        Title="Добавление персонажа" Height="661" Width="400"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+         Title="Добавление пользователя - Dungeon Manager" Height="500" Width="500"
+        WindowStartupLocation="CenterScreen" FontFamily="Arial" Icon="\Images\dad.ico" ResizeMode="NoResize"
         Background="#2E3440">
+
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="#D8DEE9"/>
@@ -42,33 +43,21 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Добавление персонажа" FontSize="18" FontWeight="Bold" 
-                   HorizontalAlignment="Center" Margin="0,0,0,10" Foreground="#88C0D0"/>
+        <TextBlock Text="Добавление пользователя" FontSize="18" FontWeight="Bold" 
+                   HorizontalAlignment="Center" Margin="0,15,0,10" Foreground="#88C0D0"/>
 
-        <StackPanel Grid.Row="1">
-            <TextBlock Text="Имя персонажа:"/>
-            <TextBox x:Name="CharacterNameTextBox"/>
+        <StackPanel Grid.Row="1" Margin="65,32,65,60" Grid.RowSpan="2">
+            <TextBlock Text="Логин:"/>
+            <TextBox x:Name="LoginTextBox"/>
 
-            <TextBlock Text="Класс:"/>
-            <ComboBox x:Name="ClassComboBox"/>
+            <TextBlock Text="Пароль:"/>
+            <TextBox x:Name="PasswordTextBox" />
 
-            <TextBlock Text="Умения:"/>
-            <ComboBox x:Name="PerksComboBox"/>
-            
-            <TextBlock Text="Навыки:"/>
-            <ComboBox x:Name="SkillComboBox"/>
+            <TextBlock Text="Электронная почта:"/>
+            <TextBox x:Name="EmailTextBox"/>
 
-            <TextBlock Text="Характеристика:"/>
-            <ComboBox x:Name="StatsComboBox"
-              SelectionChanged="StatsComboBox_SelectionChanged"
-              DisplayMemberPath="Display"
-              SelectedValuePath="Stat" />
-
-            <TextBlock Text="Цена:"/>
-            <TextBox x:Name="PriceTextBox"/>
-
-            <TextBlock Text="Изображение (URL):"/>
-            <TextBox x:Name="ImageUrlTextBox" Text="\Images\default.jpg"/>
+            <TextBlock Text="Роль:"/>
+            <ComboBox x:Name="RoleComboBox" DisplayMemberPath="RoleName" SelectedValuePath="idRole"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Margin="0,10">

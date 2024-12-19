@@ -7,31 +7,30 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using DungeonManager.ApplicationData;
 
-namespace DungeonManager.ManagerWindows
+namespace DungeonManager.AdminWindows
 {
     /// <summary>
-    /// Логика взаимодействия для ManagerOrderHistoryWindow.xaml
+    /// Логика взаимодействия для AdminOrderHistroyWindow.xaml
     /// </summary>
-    public partial class ManagerOrderHistoryWindow : Window
+    public partial class AdminOrderHistroyWindow : Window
     {
         public ObservableCollection<OrderHistoryViewModel> OrderHistory { get; set; }
 
-        private int ManId { get; set; }
-        private string Login { get; set; }
-
-        public ManagerOrderHistoryWindow()
+        private int AdminId { get; set; }
+        private string LoginAdmin { get; set; }
+        public AdminOrderHistroyWindow()
         {
             InitializeComponent();
-            if (App.Current.Properties["LoginManager"] is string ManLogin)
+
+            if (App.Current.Properties["LoginAdmin"] is string ManLogin)
             {
-                Login = ManLogin;
+                LoginAdmin = ManLogin;
             }
 
-            if (App.Current.Properties["idManager"] is int ManId1)
+            if (App.Current.Properties["idAdmin"] is int ManId1)
             {
-                ManId = ManId1;
+                AdminId = ManId1;
             }
-            //MessageBox.Show($"Ошибка загрузки данных: {Login + ManId}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
             DataContext = this;
             LoadOrderHistory();
@@ -50,7 +49,7 @@ namespace DungeonManager.ManagerWindows
 
                 if (selectedOrderType == "Личные")
                 {
-                    orderHistoryQuery = orderHistoryQuery.Where(o => o.idUser == ManId);
+                    orderHistoryQuery = orderHistoryQuery.Where(o => o.idUser == AdminId);
                 }
 
                 var orderHistory = orderHistoryQuery.ToList()
@@ -122,10 +121,63 @@ namespace DungeonManager.ManagerWindows
                 MessageBox.Show("Пожалуйста, выберите заказ для редактирования.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void DeleteOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedOrder = OrdersDataGrid.SelectedItem as OrderHistoryViewModel;
+
+            if (selectedOrder != null)
+            {
+                var confirmation = MessageBox.Show(
+                    $"Вы уверены, что хотите удалить заказ ID {selectedOrder.idOrder}?",
+                    "Подтверждение удаления",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning
+                );
+
+                if (confirmation == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        using (var transaction = AppConnect.DarkAndDarkBD.Database.BeginTransaction())
+                        {
+                            var orderItemsToDelete = AppConnect.DarkAndDarkBD.OrderItems
+                                .Where(oi => oi.idOrder == selectedOrder.idOrder)
+                                .ToList();
+
+                            AppConnect.DarkAndDarkBD.OrderItems.RemoveRange(orderItemsToDelete);
+
+                            var orderToDelete = AppConnect.DarkAndDarkBD.Orders
+                                .FirstOrDefault(o => o.idOrder == selectedOrder.idOrder);
+
+                            if (orderToDelete != null)
+                            {
+                                AppConnect.DarkAndDarkBD.Orders.Remove(orderToDelete);
+                            }
+
+                            AppConnect.DarkAndDarkBD.SaveChanges();
+                            transaction.Commit();
+
+                            MessageBox.Show("Заказ успешно удален.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                            LoadOrderHistory();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Ошибка при удалении заказа: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите заказ для удаления.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
 
 
         //Контекст юзера 
-        private void ManagerTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void AdminTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var textBlock = sender as TextBlock;
 
@@ -139,20 +191,32 @@ namespace DungeonManager.ManagerWindows
         private void MenuItem_Events_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Переход на главную страницу.");
-            new ManagerWindow().Show();
+            new AdminWindow().Show();
             this.Close();
         }
 
         private void MenuItem_Orders_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Переход на страницу Корзины.");
-            new ManagerCartWindow().Show();
+            new AdminCartWindow().Show();
             this.Close();
         }
         private void MenuItem_OrderHistory_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Переход на страницу Управление заказами.");
-            new ManagerOrderHistoryWindow().Show();
+            new AdminOrderHistroyWindow().Show();
+            this.Close();
+        }
+        private void MenuItem_Users_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Переход на страницу Управление заказами.");
+            new AdminUsersWindow().Show();
+            this.Close();
+        }
+        private void MenuItem_Tables_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Переход на страницу Управление заказами.");
+            new AdminAllTables().Show();
             this.Close();
         }
 
@@ -185,6 +249,6 @@ namespace DungeonManager.ManagerWindows
             public string StatusName { get; set; }
         }
 
-        
+
     }
 }

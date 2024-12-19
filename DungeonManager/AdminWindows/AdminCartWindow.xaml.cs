@@ -13,36 +13,37 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DungeonManager.ApplicationData;
-using DungeonManager.Model;
+using DungeonManager.ManagerWindows;
 using static DungeonManager.AuthUsersWindows.CartViewWindow;
 
-namespace DungeonManager.ManagerWindows
+namespace DungeonManager.AdminWindows
 {
     /// <summary>
-    /// Логика взаимодействия для ManagerCartWindow.xaml
+    /// Логика взаимодействия для AdminCartWindow.xaml
     /// </summary>
-    public partial class ManagerCartWindow : Window
+    public partial class AdminCartWindow : Window
     {
         private ObservableCollection<CartItemViewModel> CartItems;
 
-        private int ManId { get; set; }
-        private string Login { get; set; }
-        public ManagerCartWindow()
+        private int AdminId { get; set; }
+        private string LoginAdmin { get; set; }
+        public AdminCartWindow()
         {
             InitializeComponent();
-            if (App.Current.Properties["LoginManager"] is string ManLogin)
+
+            if (App.Current.Properties["LoginAdmin"] is string ManLogin)
             {
-                Login = ManLogin;
+                LoginAdmin = ManLogin;
             }
 
-            if (App.Current.Properties["idManager"] is int ManId1)
+            if (App.Current.Properties["idAdmin"] is int ManId1)
             {
-                ManId = ManId1;
+                AdminId = ManId1;
             }
-            //MessageBox.Show($"Ошибка загрузки данных: {Login + ManId}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
             DataContext = this;
             LoadCart();
+
         }
 
         private void LoadCart()
@@ -51,7 +52,7 @@ namespace DungeonManager.ManagerWindows
             {
                 CartItems = new ObservableCollection<CartItemViewModel>(
                     AppConnect.DarkAndDarkBD.Cart
-                        .Where(cart => cart.idUser == ManId)
+                        .Where(cart => cart.idUser == AdminId)
                         .Join(AppConnect.DarkAndDarkBD.Characters,
                               cart => cart.idCharacter,
                               character => character.idCharacter,
@@ -112,14 +113,14 @@ namespace DungeonManager.ManagerWindows
         {
             try
             {
-                if (ManId == 0)
+                if (AdminId == 0)
                 {
                     MessageBox.Show("Пользователь не авторизован.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 var cartItems = AppConnect.DarkAndDarkBD.Cart
-                    .Where(c => c.idUser == ManId)
+                    .Where(c => c.idUser == AdminId)
                     .Join(AppConnect.DarkAndDarkBD.Characters,
                           cart => cart.idCharacter,
                           character => character.idCharacter,
@@ -139,7 +140,7 @@ namespace DungeonManager.ManagerWindows
 
                 var newOrder = new DungeonManager.Model.Orders
                 {
-                    idUser = ManId,
+                    idUser = AdminId,
                     OrderDate = DateTime.Now,
                     idStatus = 1 // Статус "В ожидании" по умолчанию
                 };
@@ -160,7 +161,7 @@ namespace DungeonManager.ManagerWindows
                     AppConnect.DarkAndDarkBD.OrderItems.Add(orderItem);
                 }
 
-                var userCart = AppConnect.DarkAndDarkBD.Cart.Where(c => c.idUser == ManId);
+                var userCart = AppConnect.DarkAndDarkBD.Cart.Where(c => c.idUser == AdminId);
                 AppConnect.DarkAndDarkBD.Cart.RemoveRange(userCart);
 
                 AppConnect.DarkAndDarkBD.SaveChanges();
@@ -181,10 +182,8 @@ namespace DungeonManager.ManagerWindows
         }
 
 
-
-
         //Контекст юзера 
-        private void ManagerTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void AdminTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var textBlock = sender as TextBlock;
 
@@ -198,20 +197,32 @@ namespace DungeonManager.ManagerWindows
         private void MenuItem_Events_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Переход на главную страницу.");
-            new ManagerWindow().Show();
+            new AdminWindow().Show();
             this.Close();
         }
 
         private void MenuItem_Orders_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Переход на страницу Корзины.");
-            new ManagerCartWindow().Show();
+            new AdminCartWindow().Show();
             this.Close();
         }
         private void MenuItem_OrderHistory_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Переход на страницу Управление заказами.");
-            new ManagerOrderHistoryWindow().Show();
+            new AdminOrderHistroyWindow().Show();
+            this.Close();
+        }
+        private void MenuItem_Users_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Переход на страницу Управление заказами.");
+            new AdminUsersWindow().Show();
+            this.Close();
+        }
+        private void MenuItem_Tables_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Переход на страницу Управление заказами.");
+            new AdminAllTables().Show();
             this.Close();
         }
 
@@ -228,6 +239,4 @@ namespace DungeonManager.ManagerWindows
             Application.Current.Shutdown();
         }
     }
-
-
 }

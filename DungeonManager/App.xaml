@@ -142,7 +142,6 @@
             </Setter>
         </Style>
 
-            <!-- Стиль для строк в DataGrid -->
             <Style TargetType="DataGridRow">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="#FF2A9D8F"/>
@@ -169,5 +168,9 @@
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
             </Style>
 
+        <Style x:Key="CenterAlignedDataGridCellStyle" TargetType="DataGridCell">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
     </Application.Resources>
 </Application>

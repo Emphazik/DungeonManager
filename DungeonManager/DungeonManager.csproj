@@ -64,6 +64,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AdminWindows\AdminAddUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindows\AdminAllTables.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindows\AdminCartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindows\AdminEditUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindows\AdminOrderHistroyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindows\AdminUsersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminWindows\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthUsersWindows\CartViewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -88,6 +116,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AdminWindows\AdminAddUserWindow.xaml.cs">
+      <DependentUpon>AdminAddUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindows\AdminAllTables.xaml.cs">
+      <DependentUpon>AdminAllTables.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindows\AdminCartWindow.xaml.cs">
+      <DependentUpon>AdminCartWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindows\AdminEditUserWindow.xaml.cs">
+      <DependentUpon>AdminEditUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindows\AdminOrderHistroyWindow.xaml.cs">
+      <DependentUpon>AdminOrderHistroyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindows\AdminUsersWindow.xaml.cs">
+      <DependentUpon>AdminUsersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWindows\AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -233,9 +282,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AdminWindows\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\BlacksmithLogo.png" />
     <Resource Include="Images\dnd_name.png" />
