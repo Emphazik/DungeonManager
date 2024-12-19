@@ -8,7 +8,7 @@
 ## Ссылки
 
 - **[Отчёт по проекту](https://github.com/Emphazik/report-link)**
-- **[SQL-скрипт для базы данных](https://github.com/Emphazik/sql-script-link)**
+- **[SQL-скрипт для базы данных](https://github.com/Emphazik/DungeonManager/blob/master/bd.sql)**
 
 ---
 
